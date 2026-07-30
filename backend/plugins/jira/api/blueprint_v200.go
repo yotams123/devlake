@@ -79,14 +79,22 @@ func makeDataSourcePipelinePlanV200(
 		}
 
 		scope, scopeConfig := scopeDetail.Scope, scopeDetail.ScopeConfig
+		if scopeConfig == nil {
+			scopeConfig = &models.JiraScopeConfig{}
+		}
+		scopeConfigId := scope.ScopeConfigId
+		if scopeConfig.ID != 0 {
+			scopeConfigId = scopeConfig.ID
+		}
 		// construct task options for Jira
 		task, err := helper.MakePipelinePlanTask(
 			"jira",
 			subtaskMetas,
 			scopeConfig.Entities,
 			JiraTaskOptions{
-				ConnectionId: scope.ConnectionId,
-				BoardId:      scope.BoardId,
+				ConnectionId:  scope.ConnectionId,
+				BoardId:       scope.BoardId,
+				ScopeConfigId: scopeConfigId,
 			},
 		)
 		if err != nil {
