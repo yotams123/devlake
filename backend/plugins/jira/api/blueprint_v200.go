@@ -92,8 +92,8 @@ func makeDataSourcePipelinePlanV200(
 			subtaskMetas,
 			scopeConfig.Entities,
 			JiraTaskOptions{
-				ConnectionId: scope.ConnectionId,
-				BoardId:      scope.BoardId,
+				ConnectionId:  scope.ConnectionId,
+				BoardId:       scope.BoardId,
 				ScopeConfigId: scopeConfigId,
 			},
 		)
