@@ -255,6 +255,10 @@ func (p Jira) PrepareTaskData(taskCtx plugin.TaskContext, options map[string]int
 		ApiClient:      jiraApiClient,
 		JiraServerInfo: *info,
 		Board:          scope,
+		// op.ProjectName is injected by services.GeneratePlanJsonV200 at
+		// blueprint-plan-generation time, when the running Devlake project is
+		// known unambiguously.
+		ProjectName: op.ProjectName,
 	}
 
 	return taskData, nil
